@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://softsolution.com.co/sitemap.xml
+Sitemap: https://softsolution-web.vercel.app/sitemap.xml

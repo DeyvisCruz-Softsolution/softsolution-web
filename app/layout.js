@@ -1,46 +1,69 @@
 import "./globals.css";
 import Header from "./components/Header";
 
-export async function generateMetadata() {
-  return {
+export const metadata = {
+  metadataBase: new URL("https://softsolution-web.vercel.app"),
+  title: {
+    default: "Softsolution E.U. | Ingeniería y Tecnología",
+    template: "%s | Softsolution E.U.",
+  },
+  description:
+    "Servicios profesionales en electricidad, telecomunicaciones, seguridad electrónica y desarrollo de software en Colombia.",
+  keywords: [
+    "ingeniería eléctrica",
+    "telecomunicaciones",
+    "seguridad electrónica",
+    "desarrollo de software",
+    "Softsolution",
+    "Bucaramanga",
+    "Colombia",
+  ],
+  authors: [{ name: "Softsolution E.U." }],
+  creator: "Softsolution E.U.",
+  publisher: "Softsolution E.U.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
     title: "Softsolution E.U. | Ingeniería y Tecnología",
     description:
-      "Servicios profesionales en electricidad, telecomunicaciones, seguridad electrónica y desarrollo de software en Colombia. Estudio, suministro, instalación y mantenimiento.",
-    keywords: [
-      "ingeniería eléctrica",
-      "telecomunicaciones",
-      "seguridad electrónica",
-      "desarrollo de software",
-      "Softsolution",
-      "Bucaramanga",
-      "Colombia",
+      "Soluciones integrales en ingeniería, tecnología y software a la medida.",
+    url: "https://softsolution-web.vercel.app",
+    siteName: "Softsolution E.U.",
+    locale: "es_CO",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Softsolution E.U. Ingeniería y Tecnología",
+      },
     ],
-    openGraph: {
-      title: "Softsolution E.U.",
-      description:
-        "Soluciones integrales en ingeniería, tecnología y software.",
-      url: "https://softsolution.com.co",
-      siteName: "Softsolution E.U.",
-      locale: "es_CO",
-      type: "website",
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: "Softsolution E.U.",
-        },
-      ],
-    },
-  };
-}
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Softsolution E.U. | Ingeniería y Tecnología",
+    description:
+      "Soluciones profesionales en ingeniería eléctrica, telecomunicaciones y software.",
+    images: ["/og-image.png"],
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body className="bg-black text-white">
+      <body className="bg-black text-white antialiased">
         <Header />
-        <main className="pt-20">{children}</main>
+        <main className="pt-18">{children}</main>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://softsolution.com.co";
+  const baseUrl = "https://softsolution-web.vercel.app";
 
   return [
     {

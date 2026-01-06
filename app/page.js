@@ -189,11 +189,14 @@ export default function Home() {
             <p className="text-gray-500 text-sm mb-4">
               Atención personalizada • Respuesta rápida • Cotización sin costo
             </p>
-
+<p className="text-gray-500 text-sm mb-4">
+              SEO DEYVIS FABIANY CRUZ CARVAJAL
+            </p>
             <div className="text-gray-400 text-sm space-y-1">
               <p>📧 softsolution.eu.software@gmail.com</p>
-              <p>📞 +57 315 341 1850</p>
               <p>📍 Bucaramanga / Santander / Colombia</p>
+              <p>🌐 https://softsolution-web.vercel.app/</p>
+              <p>📞 +57 315 341 1850</p>
             </div>
           </div>
         </div>
