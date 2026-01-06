@@ -190,7 +190,7 @@ export default function Home() {
               Atención personalizada • Respuesta rápida • Cotización sin costo
             </p>
 <p className="text-gray-500 text-sm mb-4">
-              SEO DEYVIS FABIANY CRUZ CARVAJAL
+              CEO DEYVIS FABIANY CRUZ CARVAJAL
             </p>
             <div className="text-gray-400 text-sm space-y-1">
               <p>📧 softsolution.eu.software@gmail.com</p>
