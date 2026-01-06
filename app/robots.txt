@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://softsolution.com.co/sitemap.xml
