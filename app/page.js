@@ -52,7 +52,7 @@ export default function Home() {
           </p>
 
           <a
-            href="#contacto"
+            href="/cotizacion"
             className="inline-block px-10 py-4 bg-red-700 font-semibold rounded-xl
             hover:bg-red-800 hover:scale-105 transition-transform duration-300"
           >
@@ -167,10 +167,10 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 mb-10">
             <a
-              href="#"
-              className="px-10 py-4 bg-red-700 font-semibold rounded-xl
-              hover:bg-red-800 hover:scale-105 transition-transform duration-300"
-            >
+            href="/cotizacion"
+            className="inline-block px-10 py-4 bg-red-700 font-semibold rounded-xl
+            hover:bg-red-800 hover:scale-105 transition-transform duration-300"
+          >
               Solicitar cotización
             </a>
 
@@ -190,7 +190,7 @@ export default function Home() {
               Atención personalizada • Respuesta rápida • Cotización sin costo
             </p>
 <p className="text-gray-500 text-sm mb-4">
-              SEO DEYVIS FABIANY CRUZ CARVAJAL
+              CEO DEYVIS FABIANY CRUZ CARVAJAL
             </p>
             <div className="text-gray-400 text-sm space-y-1">
               <p>📧 softsolution.eu.software@gmail.com</p>
