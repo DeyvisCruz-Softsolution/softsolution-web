@@ -22,9 +22,8 @@ export const metadata = {
   creator: "Softsolution E.U.",
   publisher: "Softsolution E.U.",
 
-  // ✅ AQUI VA LA VERIFICACIÓN DE GOOGLE
-  verification: {
-    google: "41386a3b4d9eaa7b",
+ verification: {
+    google: "cNaNkuYDj_3MLhucwvQw6Zx2fPd77WBl7VPgBpKEXAo",
   },
 
   robots: {
