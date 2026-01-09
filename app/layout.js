@@ -21,6 +21,12 @@ export const metadata = {
   authors: [{ name: "Softsolution E.U." }],
   creator: "Softsolution E.U.",
   publisher: "Softsolution E.U.",
+
+  // ✅ AQUI VA LA VERIFICACIÓN DE GOOGLE
+  verification: {
+    google: "41386a3b4d9eaa7b",
+  },
+
   robots: {
     index: true,
     follow: true,
