@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { Zap, Network, ShieldCheck, Code, Snowflake } from "lucide-react";
 import useInView from "./hooks/useInView";
-import { useState, useEffect } from "react";
-import { servicesData } from "./services";
+import { useState } from "react";
 
 export default function Home() {
   const [heroRef, heroVisible] = useInView();
@@ -13,60 +13,15 @@ export default function Home() {
 
   const [selectedService, setSelectedService] = useState(null);
   const [currentImage, setCurrentImage] = useState(0);
-  const [touchStartX, setTouchStartX] = useState(null);
-  const [touchEndX, setTouchEndX] = useState(null);
 
-  /* ================= SWIPE ================= */
-
-  const handleTouchStart = (e) => {
-    setTouchStartX(e.touches[0].clientX);
+  // Imágenes SOLO para este servicio por ahora
+  const serviceImages = {
+    "Aires Acondicionados y Climatización": [
+      "/servicios/aire1.webp",
+      "/servicios/aire2.jpg",
+      "/servicios/aire3.jpg",
+    ],
   };
-
-  const handleTouchMove = (e) => {
-    setTouchEndX(e.touches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (
-      touchStartX === null ||
-      touchEndX === null ||
-      !selectedService?.images
-    )
-      return;
-
-    const distance = touchStartX - touchEndX;
-    const minSwipe = 50;
-    const images = selectedService.images;
-
-    if (distance > minSwipe) {
-      setCurrentImage((prev) =>
-        prev === images.length - 1 ? 0 : prev + 1
-      );
-    }
-
-    if (distance < -minSwipe) {
-      setCurrentImage((prev) =>
-        prev === 0 ? images.length - 1 : prev - 1
-      );
-    }
-
-    setTouchStartX(null);
-    setTouchEndX(null);
-  };
-
-  /* ================= AUTO SLIDE ================= */
-
-  useEffect(() => {
-    if (!selectedService?.images || selectedService.images.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setCurrentImage((prev) =>
-        prev === selectedService.images.length - 1 ? 0 : prev + 1
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [selectedService]);
 
   return (
     <main className="bg-black text-white">
@@ -135,34 +90,54 @@ export default function Home() {
             </h2>
 
             <div className="grid gap-8 sm:grid-cols-2">
-              {servicesData.map((service) => {
-                const Icon = service.icon;
-
-                return (
-                  <div
-                    key={service.id}
-                    onClick={() => {
-                      setCurrentImage(0);
-                      setSelectedService(service);
-                    }}
-                    className={`bg-neutral-900/60 border border-gray-800 rounded-xl p-6 card-hover cursor-pointer
-                      ${
-                        service.title === "Aires Acondicionados y Climatización"
-                          ? "sm:col-span-2 max-w-3xl mx-auto"
-                          : ""
-                      }`}
-                  >
-                    <h3 className="text-xl font-bold mb-3 flex items-center gap-3">
-                      <Icon className="text-red-600 w-6 h-6" />
-                      {service.title}
-                    </h3>
-
-                    <p className="text-gray-300 leading-relaxed text-justify hyphens-auto">
-                      {service.shortText}
-                    </p>
-                  </div>
-                );
-              })}
+              {[
+                {
+                  icon: Zap,
+                  title: "Electricidad",
+                  text: "Soluciones eléctricas residenciales, comerciales e industriales: estudios técnicos, suministro de materiales, instalación, adecuaciones, puesta en marcha y mantenimiento preventivo y correctivo."
+                },
+                {
+                  icon: Network,
+                  title: "Telecomunicaciones y Redes",
+                  text: "Diseño e implementación de redes LAN/WAN, cableado estructurado, fibra óptica, enlaces satelitales, transmisión de datos y certificación de infraestructura."
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Sistemas de Seguridad",
+                  text: "Sistemas de CCTV, monitoreo, control de acceso y alarmas, desde la cotización y suministro hasta la instalación y mantenimiento."
+                },
+                {
+                  icon: Code,
+                  title: "Desarrollo de Software",
+                  text: "Creación de páginas web y soluciones de software a medida, desde el análisis y diseño hasta la implementación, puesta en marcha y soporte continuo."
+                },
+                {
+                  icon: Snowflake,
+                  title: "Aires Acondicionados y Climatización",
+                  text: "Suministro, instalación y mantenimiento preventivo y correctivo de sistemas de aire acondicionado residenciales, comerciales, industriales y de precisión, garantizando confort térmico, eficiencia energética y operación confiable."
+                }
+              ].map(({ icon: Icon, title, text }) => (
+                <div
+                  key={title}
+                  onClick={() => {
+                    setCurrentImage(0);
+                    setSelectedService({ icon: Icon, title, text });
+                  }}
+                  className={`bg-neutral-900/60 border border-gray-800 rounded-xl p-6 card-hover cursor-pointer
+                    ${title === "Aires Acondicionados y Climatización"
+                      ? "sm:col-span-2 max-w-3xl mx-auto"
+                      : ""
+                    }`}
+                >
+                  <h3 className="text-xl font-bold mb-3 flex items-center gap-3">
+                    <Icon className="text-red-600 w-6 h-6" />
+                    {title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed text-justify hyphens-auto">
+                    {text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -265,8 +240,7 @@ export default function Home() {
           onClick={() => setSelectedService(null)}
         >
           <div
-            className="relative bg-neutral-900 border border-gray-700 rounded-2xl 
-            max-w-6xl w-full p-8 animate-fadeIn max-h-[90vh] flex flex-col"
+            className="relative bg-neutral-900 border border-gray-700 rounded-2xl max-w-3xl w-full p-8 animate-fadeIn"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -283,24 +257,21 @@ export default function Home() {
               </h3>
             </div>
 
-            {selectedService.images && (
-              <div className="relative mb-6 w-full h-80 bg-neutral-800 rounded-xl flex items-center justify-center overflow-hidden">
+            {serviceImages[selectedService.title] ? (
+              <div className="relative mb-6">
                 <Image
-                  src={selectedService.images[currentImage]}
+                  src={serviceImages[selectedService.title][currentImage]}
                   alt={selectedService.title}
-                  width={900}
-                  height={450}
-                  className="rounded-xl object-contain w-full h-56 sm:h-64 bg-black"
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
+                  width={800}
+                  height={400}
+                  className="rounded-xl object-cover w-full h-52"
                 />
 
                 <button
                   onClick={() =>
                     setCurrentImage((prev) =>
                       prev === 0
-                        ? selectedService.images.length - 1
+                        ? serviceImages[selectedService.title].length - 1
                         : prev - 1
                     )
                   }
@@ -312,7 +283,7 @@ export default function Home() {
                 <button
                   onClick={() =>
                     setCurrentImage((prev) =>
-                      prev === selectedService.images.length - 1
+                      prev === serviceImages[selectedService.title].length - 1
                         ? 0
                         : prev + 1
                     )
@@ -321,30 +292,20 @@ export default function Home() {
                 >
                   ›
                 </button>
-
-                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-                  {selectedService.images.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImage(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentImage === index
-                          ? "bg-red-600 scale-110"
-                          : "bg-gray-500 hover:bg-gray-700"
-                      }`}
-                    />
-                  ))}
-                </div>
+              </div>
+            ) : (
+              <div className="h-52 bg-neutral-800 rounded-xl flex items-center justify-center text-gray-500 mb-6">
+                Carrusel de imágenes del servicio
               </div>
             )}
 
-            <div className="overflow-y-auto pr-2 max-h-[35vh]
-              text-gray-300 leading-relaxed text-justify space-y-4 whitespace-pre-line">
-              {selectedService.description}
-            </div>
+            <p className="text-gray-300 leading-relaxed text-justify">
+              {selectedService.text}
+            </p>
           </div>
         </div>
       )}
+
     </main>
   );
 }

@@ -137,6 +137,7 @@ export default function CotizacionClient() {
               <option>Telecomunicaciones y Redes</option>
               <option>Sistemas de Seguridad</option>
               <option>Desarrollo de Software</option>
+              <option>Aires Acondicionados y Climatización</option>
             </select>
           </div>
 
